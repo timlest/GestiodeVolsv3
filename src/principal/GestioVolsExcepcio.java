@@ -1,5 +1,7 @@
 package principal;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  *
@@ -73,6 +75,9 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiVol(String codi) {
+    	Pattern p = Pattern.compile("[a-zA-z]{2,3}[0-9]{4}");
+		Matcher m = p.matcher(codi);
+		return m.matches();
     }
     
     /*
