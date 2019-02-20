@@ -4,20 +4,21 @@
  */
 package components;
 
+import java.util.ArrayList;
 import principal.Component;
 
 /**
  *
  * @author root
  */
-public class Avio implements Component{
+public class Avio implements Component {
 
     private String codi;
     private String fabricant;
     private String model;
     private int capacitat;
-    private Classe[] classes;
-    private int posicioClasses; //Atribut que controla la primera posició vuida del vector
+    private ArrayList<Classe> classes;
+    //private int posicioClasses; //Atribut que controla la primera posició vuida del vector
 
     /*
      CONSTRUCTOR
@@ -32,8 +33,8 @@ public class Avio implements Component{
         this.fabricant = fabricant;
         this.model = model;
         this.capacitat = capacitat;
-        classes = new Classe[4];
-        posicioClasses = 0;
+        classes = new ArrayList();
+        //posicioClasses = 0;
     }
 
     /*
@@ -71,24 +72,25 @@ public class Avio implements Component{
         this.capacitat = capacitat;
     }
 
-    public Classe[] getClasses() {
+    public ArrayList getClasses() {
         return classes;
     }
 
-    public void setClasses(Classe[] classes) {
+    public void setClasses(ArrayList classes) {
         this.classes = classes;
     }
 
+    /*
     public int getPosicioClasses() {
         return posicioClasses;
     }
 
     public void setPosicioClasses(int posicioClasses) {
         this.posicioClasses = posicioClasses;
-    }
+    }*/
 
 
-    /*
+ /*
     Paràmetres: cap
     Accions:
     - Demanar a l'usuari les dades per consola per crear un nou avió.
@@ -124,16 +126,16 @@ public class Avio implements Component{
      Retorn: cap
      */
     public void modificarComponent() {
-        
-        System.out.println("\nEl codi de l'avió és: "+codi);
-        codi = String.valueOf(demanarDades("\nQuin és el nou Codi de l'avió?",2));
-        demanarDades("",4); //Netejar buffer
-        System.out.println("\nEl fabricant de l'avió és: "+ fabricant);
-        fabricant = String.valueOf(demanarDades("\nQuin és el nou fabricant de l'avió?",4));
-        System.out.println("\nEl model de l'avió és: "+model);
-        model = String.valueOf(demanarDades("\nQuin és el nou model de l'avió?",4));
-        System.out.println("\nLa capacitat de l'avió és: "+capacitat);
-        capacitat = (int)demanarDades("\nQuina és la nova capacitat de l'avió?",1);
+
+        System.out.println("\nEl codi de l'avió és: " + codi);
+        codi = String.valueOf(demanarDades("\nQuin és el nou Codi de l'avió?", 2));
+        demanarDades("", 4); //Netejar buffer
+        System.out.println("\nEl fabricant de l'avió és: " + fabricant);
+        fabricant = String.valueOf(demanarDades("\nQuin és el nou fabricant de l'avió?", 4));
+        System.out.println("\nEl model de l'avió és: " + model);
+        model = String.valueOf(demanarDades("\nQuin és el nou model de l'avió?", 4));
+        System.out.println("\nLa capacitat de l'avió és: " + capacitat);
+        capacitat = (int) demanarDades("\nQuina és la nova capacitat de l'avió?", 1);
 
     }
 
@@ -166,15 +168,13 @@ public class Avio implements Component{
 
         if (seleccionarClasse(classe.getNom()) == -1) { //La classe no existeix
 
-            for (int i = 0; i < posicioClasses; i++) {
-                capacitatClasses += classes[i].getCapacitat();
+            for (int i = 0; i < classes.size(); i++) {
+                capacitatClasses += classes.get(i).getCapacitat();
             }
 
             if (capacitatClasses + classe.getCapacitat() <= capacitat) {
-                classes[posicioClasses] = classe;
+                classes.add(classe);
             }
-
-            posicioClasses++;
 
         } else if (seleccionarClasse(classe.getNom()) != -1 || capacitatClasses + classe.getCapacitat() > capacitat) {
             System.out.println("\nLa classe no s'ha pogut afegir");
@@ -187,8 +187,8 @@ public class Avio implements Component{
         boolean trobat = false;
         int pos = -1;
 
-        for (int i = 0; i < posicioClasses && !trobat; i++) {
-            if (classes[i].getNom().equals(nom)) {
+        for (int i = 0; i < classes.size() && !trobat; i++) {
+            if (classes.get(i).getNom().equals(nom)) {
                 pos = i;
                 trobat = true;
             }
