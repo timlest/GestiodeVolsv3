@@ -1,6 +1,6 @@
 package principal;
 
-
+import java.util.regex.*;
 /**
  *
  * @author root
@@ -61,6 +61,11 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiRuta(String codi) {
+        String expresioRegular = "^[A-Za-z]{2}[0-9]{3}$";
+        Pattern regles = Pattern.compile(expresioRegular);
+        Matcher textAnalitzar = regles.matcher(codi);
+        return Pattern.compile("^[A-Za-z]{2}[0-9]{3}$").matcher(codi).find();
+        
     }
 
     /*
