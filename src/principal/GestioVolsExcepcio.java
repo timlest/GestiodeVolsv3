@@ -75,9 +75,7 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiVol(String codi) {
-    	Pattern p = Pattern.compile("[a-zA-z]{2,3}[0-9]{4}");
-		Matcher m = p.matcher(codi);
-		return m.matches();
+    	return Pattern.compile("[a-zA-z]{2,3}[0-9]{4}").matcher(codi).matches();
     }
     
     /*
