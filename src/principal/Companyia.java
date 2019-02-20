@@ -15,6 +15,7 @@ import components.TCP;
 import components.Tripulant;
 import components.TripulantCabina;
 import java.text.ParseException;
+import java.util.ArrayList;
 
 /**
  *
@@ -25,8 +26,9 @@ public class Companyia implements Component {
     private int codi;
     private static int properCodi = 1; //El proper codi a assignar
     private String nom;
-    private Component[] components;
-    private int posicioComponents; //Possició actual buida del vector components
+   // private Component[] components;
+    private ArrayList<Component> components; //ArrayList que conte objectes Strings
+    //private int posicioComponents; //Possició actual buida del vector components
 
     /*
      CONSTRUCTOR
@@ -35,15 +37,15 @@ public class Companyia implements Component {
         codi = properCodi;
         properCodi++;
         this.nom = nom;
-        components = new Component[2945];
-        posicioComponents = 0;
+        components = new ArrayList();
+        //posicioComponents = 0;
     }
 
     public Companyia(int codi, String nom) {
         this.codi = codi;
         this.nom = nom;
-        components = new Component[2945];
-        posicioComponents = 0;
+        components = new ArrayList();
+       // posicioComponents = 0;
     }
 
     /*
@@ -73,21 +75,21 @@ public class Companyia implements Component {
         this.nom = nom;
     }
 
-    public Component[] getComponents() {
+    public ArrayList getComponents() {
         return components;
     }
 
-    public void setComponents(Component[] components) {
+    public void setComponents(ArrayList components) {
         this.components = components;
     }
 
-    public int getPosicioComponents() {
-        return posicioComponents;
-    }
+//    public int getPosicioComponents() {
+//        return posicioComponents;
+//    }
 
-    public void setPosicioComponents(int posicioComponents) {
-        this.posicioComponents = posicioComponents;
-    }
+//    public void setPosicioComponents(int posicioComponents) {
+//        this.posicioComponents = posicioComponents;
+//    }
 
 
     /*
@@ -139,8 +141,8 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(1, avio.getCodi()) == -1) {
-            components[posicioComponents] = avio;
-            posicioComponents++;
+            components.add(avio);
+            
         } else {
             System.out.println("\nAquest avió ja existeix");
         }
@@ -157,8 +159,8 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(2, ruta.getCodi()) == -1) {
-            components[posicioComponents] = ruta;
-            posicioComponents++;
+            components.add(ruta);
+            
         } else {
             System.out.println("\nAquesta ruta ja existeix");
         }
@@ -175,8 +177,8 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(2, ruta.getCodi()) == -1) {
-            components[posicioComponents] = ruta;
-            posicioComponents++;
+            components.add(ruta);
+            
         } else {
             System.out.println("\nAquesta ruta ja existeix");
         }
@@ -193,8 +195,8 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(2, ruta.getCodi()) == -1) {
-            components[posicioComponents] = ruta;
-            posicioComponents++;
+             components.add(ruta);
+           
         } else {
             System.out.println("\nAquesta ruta ja existeix");
         }
@@ -211,8 +213,7 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(2, ruta.getCodi()) == -1) {
-            components[posicioComponents] = ruta;
-            posicioComponents++;
+            components.add(ruta);
         } else {
             System.out.println("\nAquesta ruta ja existeix");
         }
@@ -229,8 +230,7 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(3, tripulant.getPassaport()) == -1) {
-            components[posicioComponents] = tripulant;
-            posicioComponents++;
+            components.add(tripulant);
         } else {
             System.out.println("\nAquest tripulant ja existeix");
         }
@@ -247,8 +247,7 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(3, tripulant.getPassaport()) == -1) {
-            components[posicioComponents] = tripulant;
-            posicioComponents++;
+            components.add(tripulant);
         } else {
             System.out.println("\nAquest tripulant ja existeix");
         }
@@ -265,8 +264,7 @@ public class Companyia implements Component {
         }
 
         if (seleccionarComponent(4, vol.getCodi()) == -1) {
-            components[posicioComponents] = vol;
-            posicioComponents++;
+            components.add(vol);
         } else {
             System.out.println("\nAquest vol ja existeix");
         }
@@ -294,15 +292,15 @@ public class Companyia implements Component {
             }
         }
 
-        for (int i = 0; i < posicioComponents; i++) {
+        for (int i = 0; i < components.size(); i++) {
 
-            if (tipus == 1 && components[i] instanceof Avio && ((Avio) components[i]).getCodi().equals(id)) {
+            if (tipus == 1 && components.get(i) instanceof Avio && ((Avio) components.get(i)).getCodi().equals(id)) {
                 return i;
-            } else if (tipus == 2 && components[i] instanceof Ruta && ((Ruta) components[i]).getCodi().equals(id)) {
+            } else if (tipus == 2 && components.get(i) instanceof Ruta && ((Ruta) components.get(i)).getCodi().equals(id)) {
                 return i;
-            } else if (tipus == 3 && components[i] instanceof Tripulant && ((Tripulant) components[i]).getPassaport().equals(id)) {
+            } else if (tipus == 3 && components.get(i) instanceof Tripulant && ((Tripulant) components.get(i)).getPassaport().equals(id)) {
                 return i;
-            } else if (tipus == 4 && components[i] instanceof Vol && ((Vol) components[i]).getCodi().equals(id)) {
+            } else if (tipus == 4 && components.get(i) instanceof Vol && ((Vol) components.get(i)).getCodi().equals(id)) {
                 return i;
             }
         }
@@ -315,12 +313,12 @@ public class Companyia implements Component {
 
         if (pos >= 0) {
 
-            volSel = (Vol) getComponents()[pos];
+            volSel = (Vol) getComponents().get(pos);
 
             pos = seleccionarComponent(1, null);
 
             if (pos >= 0) {
-                volSel.setAvio((Avio) getComponents()[pos]);
+                volSel.setAvio((Avio) getComponents().get(pos));
             } else {
                 System.out.println("\nNo existeix aquest avió");
             }
@@ -336,12 +334,12 @@ public class Companyia implements Component {
 
         if (pos >= 0) {
 
-            volSel = (Vol) getComponents()[pos];
+            volSel = (Vol) getComponents().get(pos);
 
             pos = seleccionarComponent(3, null);
 
-            if (pos >= 0 && ((tipus == 6 && getComponents()[pos] instanceof TripulantCabina) || (tipus == 7 && getComponents()[pos] instanceof TCP))) {
-                volSel.afegirTripulant((Tripulant) getComponents()[pos]);
+            if (pos >= 0 && ((tipus == 6 && getComponents().get(pos) instanceof TripulantCabina) || (tipus == 7 && getComponents().get(pos) instanceof TCP))) {
+                volSel.afegirTripulant((Tripulant) getComponents().get(pos));
             } else {
                 System.out.println("\nNo existeix aquest tripulant");
             }
@@ -357,12 +355,12 @@ public class Companyia implements Component {
 
         if (pos >= 0) {
 
-            volSel = (Vol) getComponents()[pos];
+            volSel = (Vol) getComponents().get(pos);
 
             pos = seleccionarComponent(2, null);
 
-            if (pos >= 0 && ((tipus == 2 && getComponents()[pos] instanceof RutaNacional) || (tipus == 3 && getComponents()[pos] instanceof RutaInternacional) || (tipus == 4 && getComponents()[pos] instanceof RutaIntercontinental) || (tipus == 5 && getComponents()[pos] instanceof RutaTransoceanica))) {
-                volSel.setRuta((Ruta) getComponents()[pos]);
+            if (pos >= 0 && ((tipus == 2 && getComponents().get(pos) instanceof RutaNacional) || (tipus == 3 && getComponents().get(pos) instanceof RutaInternacional) || (tipus == 4 && getComponents().get(pos) instanceof RutaIntercontinental) || (tipus == 5 && getComponents().get(pos) instanceof RutaTransoceanica))) {
+                volSel.setRuta((Ruta) getComponents().get(pos));
             } else {
                 System.out.println("\nNo existeix aquesta ruta");
             }
