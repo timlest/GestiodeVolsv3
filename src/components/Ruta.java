@@ -1,13 +1,14 @@
 package components;
 
 import principal.Component;
+import principal.GestioVolsExcepcio;
 
 /**
  *
  * @author root
  */
 public abstract class Ruta implements Component {
-    
+
     private String codi;
     private String aeroportOri;
     private String aeroportDes;
@@ -16,11 +17,17 @@ public abstract class Ruta implements Component {
     /*
      CONSTRUCTOR
      */
-    public Ruta(String codi, String aeroportOri, String aeroportDes, double distancia) {
-        this.codi = codi;
-        this.aeroportOri = aeroportOri;
-        this.aeroportDes = aeroportDes;
-        this.distancia = distancia;
+    public Ruta(String codi, String aeroportOri, String aeroportDes, double distancia) throws GestioVolsExcepcio {
+
+        if (!GestioVolsExcepcio.comprovarCodiRuta(codi)) {
+            throw new GestioVolsExcepcio("3");
+
+        } else {
+            this.codi = codi;
+            this.aeroportOri = aeroportOri;
+            this.aeroportDes = aeroportDes;
+            this.distancia = distancia;
+        }
     }
 
     /*
@@ -70,17 +77,28 @@ public abstract class Ruta implements Component {
      */
     public void modificarComponent() {
 
-        System.out.println("\nEl codi de la ruta és:" + codi);
-        codi = String.valueOf(demanarDades("\nQuin és el nou codi de la ruta?",2));
-        demanarDades("",4); //Netejar buffer
-        System.out.println("\nL'aeroport d'origen de la ruta és:" + aeroportOri);
-        aeroportOri = String.valueOf(demanarDades("\nQuin és el nou l'aeroport d'origen de la ruta?",4));
-        System.out.println("\nL'aeroport de destí de la ruta és:" + aeroportDes);
-        aeroportDes = String.valueOf(demanarDades("\nQuin és el nou l'aeroport de destí de la ruta?",4));
-        System.out.println("\nLa distància de la ruta és:");
-        distancia = (double)demanarDades("\nQuina és la nova distància de la ruta?",3);
-        
-        demanarDades("",4); //Netejar buffer
+        try {
+            System.out.println("\nEl codi de la ruta és:" + codi);
+            codi = String.valueOf(demanarDades("\nQuin és el nou codi de la ruta?", 2));
+
+            if (!GestioVolsExcepcio.comprovarCodiRuta(codi)) {
+                throw new GestioVolsExcepcio("3");
+
+            } else {
+
+                demanarDades("", 4); //Netejar buffer
+                System.out.println("\nL'aeroport d'origen de la ruta és:" + aeroportOri);
+                aeroportOri = String.valueOf(demanarDades("\nQuin és el nou l'aeroport d'origen de la ruta?", 4));
+                System.out.println("\nL'aeroport de destí de la ruta és:" + aeroportDes);
+                aeroportDes = String.valueOf(demanarDades("\nQuin és el nou l'aeroport de destí de la ruta?", 4));
+                System.out.println("\nLa distància de la ruta és:");
+                distancia = (double) demanarDades("\nQuina és la nova distància de la ruta?", 3);
+
+                demanarDades("", 4); //Netejar buffer
+            }
+        } catch (GestioVolsExcepcio e) {
+            e.getMessage();
+        }
     }
 
     public void mostrarComponent() {
@@ -89,5 +107,5 @@ public abstract class Ruta implements Component {
         System.out.println("\nAeroport de destí: " + aeroportDes);
         System.out.println("\nDistància: " + distancia);
     }
-    
+
 }
