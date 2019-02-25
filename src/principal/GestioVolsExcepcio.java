@@ -1,6 +1,8 @@
 package principal;
 
-import java.util.regex.*;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 /**
  *
  * @author root
@@ -49,6 +51,7 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiAvio(String codi) {
+        return Pattern.compile("^\\d{3}$").matcher(codi).matches();
     }
 
     /*
@@ -61,11 +64,7 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiRuta(String codi) {
-        String expresioRegular = "^[A-Za-z]{2}[0-9]{3}$";
-        Pattern regles = Pattern.compile(expresioRegular);
-        Matcher textAnalitzar = regles.matcher(codi);
-        return Pattern.compile("^[A-Za-z]{2}[0-9]{3}$").matcher(codi).find();
-        
+        return Pattern.compile("^[a-Za-z]{2}[0-9]{3}$").matcher(codi).matches();
     }
 
     /*
@@ -78,6 +77,7 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiVol(String codi) {
+    	return Pattern.compile("[a-zA-z]{2,3}[0-9]{4}").matcher(codi).matches();
     }
     
     /*
