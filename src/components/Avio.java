@@ -30,16 +30,15 @@ public class Avio implements Component {
      - Inicialitzar l'atribut possicioClasses a 0.
      */
     public Avio(String codi, String fabricant, String model, int capacitat) throws GestioVolsExcepcio{
+        if(!GestioVolsExcepcio.comprovarCodiAvio(codi)){
+            throw new GestioVolsExcepcio("2");
+        }
         this.codi = codi;
         this.fabricant = fabricant;
         this.model = model;
         this.capacitat = capacitat;
         classes = new ArrayList();
         //posicioClasses = 0;
-        
-        if(!GestioVolsExcepcio.comprovarCodiAvio(codi)){
-            throw new GestioVolsExcepcio("2");
-        }
     }
 
     /*

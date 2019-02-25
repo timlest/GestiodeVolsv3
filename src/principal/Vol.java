@@ -39,7 +39,10 @@ public class Vol implements Component {
     /*
 	 * CONSTRUCTOR
      */
-    public Vol(String codi, Date dataSortida, Date dataArribada, LocalTime horaSortida, LocalTime horaArribada) {
+    public Vol(String codi, Date dataSortida, Date dataArribada, LocalTime horaSortida, LocalTime horaArribada) throws GestioVolsExcepcio {
+        if (!GestioVolsExcepcio.comprovarCodiVol(codi)) {
+            throw new GestioVolsExcepcio("4");
+        }
         this.codi = codi;
         ruta = null;
         avio = null;
@@ -145,7 +148,7 @@ public class Vol implements Component {
 	 * haurem de demanar l'hora i minuts, els segons i nanosegons no els tindrem en
 	 * compte. Retorn: El nou vol.
      */
-    public static Vol nouVol() throws ParseException {
+    public static Vol nouVol() throws ParseException, GestioVolsExcepcio {
         String codi;
         Date dataSortida, dataArribada;
         LocalTime horaSortida, horaArribada;
@@ -153,6 +156,10 @@ public class Vol implements Component {
 
         System.out.println("\nCodi del vol?");
         codi = DADES.next();
+
+        if (!GestioVolsExcepcio.comprovarCodiVol(codi)) {
+            throw new GestioVolsExcepcio("4");
+        }
 
         System.out.println("\nData de sortida del vol?: (dd-mm-yyyy)");
         dataSortida = new SimpleDateFormat("dd-MM-yyyy").parse(DADES.next());
@@ -186,20 +193,20 @@ public class Vol implements Component {
 	 * modificar el valor de durada mitjan�ant el m�tode adient d'aquesta classe.
 	 * Retorn: cap
      */
-    public void modificarComponent() throws ParseException {
+    public void modificarComponent() throws ParseException, GestioVolsExcepcio {
         int hora, minuts;
 
         System.out.println("\nEl codi del vol �s: " + codi);
         codi = String.valueOf(demanarDades("\nQuin �s el nou codi del vol?", 2));
+        
+        if(!GestioVolsExcepcio.comprovarCodiVol(codi)){
+            throw new GestioVolsExcepcio("4");
+        }
 
-        System.out
-                .println("\nLa data de sortida del vol �s: " + new SimpleDateFormat("dd-MM-yyyy").format(dataSortida));
-        dataSortida = new SimpleDateFormat("dd-MM-yyyy")
-                .parse(String.valueOf(demanarDades("\nQuina �s la nova data de sortida del vol?: (dd-mm-yyyy)", 2)));
-        System.out
-                .println("\nLa data d'arribada del vol �s: " + new SimpleDateFormat("dd-MM-yyyy").format(dataArribada));
-        dataArribada = new SimpleDateFormat("dd-MM-yyyy")
-                .parse(String.valueOf(demanarDades("\nQuina �s la nova data d'arribada del vol?: (dd-mm-yyyy)", 2)));
+        System.out.println("\nLa data de sortida del vol �s: " + new SimpleDateFormat("dd-MM-yyyy").format(dataSortida));
+        dataSortida = new SimpleDateFormat("dd-MM-yyyy").parse(String.valueOf(demanarDades("\nQuina �s la nova data de sortida del vol?: (dd-mm-yyyy)", 2)));
+        System.out.println("\nLa data d'arribada del vol �s: " + new SimpleDateFormat("dd-MM-yyyy").format(dataArribada));
+        dataArribada = new SimpleDateFormat("dd-MM-yyyy").parse(String.valueOf(demanarDades("\nQuina �s la nova data d'arribada del vol?: (dd-mm-yyyy)", 2)));
 
         System.out.println("\nL'hora de sortida del vol �s: " + horaSortida.getHour() + ":" + horaSortida.getMinute());
         hora = (int) demanarDades("\nQuina �s la nova hora de sortida del vol?", 1);

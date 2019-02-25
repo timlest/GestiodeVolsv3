@@ -14,7 +14,7 @@ public interface Component {
     
     public Scanner DADES= new Scanner(System.in);
     
-    public void modificarComponent() throws GestioVolsExcepcio;
+    public void modificarComponent() throws GestioVolsExcepcio, ParseException;
     
     public void mostrarComponent();
     
