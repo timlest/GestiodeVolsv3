@@ -6,6 +6,7 @@ package components;
 
 import java.util.ArrayList;
 import principal.Component;
+import principal.GestioVolsExcepcio;
 
 /**
  *
@@ -28,13 +29,17 @@ public class Avio implements Component {
      - Inicialitzar el vector classes com a buit i una longitud de 4.
      - Inicialitzar l'atribut possicioClasses a 0.
      */
-    public Avio(String codi, String fabricant, String model, int capacitat) {
+    public Avio(String codi, String fabricant, String model, int capacitat) throws GestioVolsExcepcio{
         this.codi = codi;
         this.fabricant = fabricant;
         this.model = model;
         this.capacitat = capacitat;
         classes = new ArrayList();
         //posicioClasses = 0;
+        
+        if(!GestioVolsExcepcio.comprovarCodiAvio(codi)){
+            throw new GestioVolsExcepcio("2");
+        }
     }
 
     /*
@@ -99,12 +104,15 @@ public class Avio implements Component {
     formats per una única paraula, per exemple, Airbus Company o Boing 777
     Retorn: El nou avió.
      */
-    public static Avio nouAvio() {
+    public static Avio nouAvio() throws GestioVolsExcepcio{
         String codi, fabricant, model;
         int capacitat;
 
         System.out.println("\nCodi de l'avió:");
         codi = DADES.next();
+        if(!GestioVolsExcepcio.comprovarCodiAvio(codi)){
+            throw new GestioVolsExcepcio("2");
+        }
         DADES.nextLine(); //Neteja de buffer
         System.out.println("\nFabricant de l'avió:");
         fabricant = DADES.nextLine();
@@ -125,10 +133,13 @@ public class Avio implements Component {
      actual, abans de modificar-los
      Retorn: cap
      */
-    public void modificarComponent() {
+    public void modificarComponent() throws GestioVolsExcepcio{
 
         System.out.println("\nEl codi de l'avió és: " + codi);
         codi = String.valueOf(demanarDades("\nQuin és el nou Codi de l'avió?", 2));
+        if(!GestioVolsExcepcio.comprovarCodiAvio(codi)){
+            throw new GestioVolsExcepcio("2");
+        }
         demanarDades("", 4); //Netejar buffer
         System.out.println("\nEl fabricant de l'avió és: " + fabricant);
         fabricant = String.valueOf(demanarDades("\nQuin és el nou fabricant de l'avió?", 4));

@@ -7,7 +7,7 @@ import java.util.regex.Pattern;
  *
  * @author root
  */
-public class GestioVolsExcepcio extends Exception {
+public class GestioVolsExcepcio extends Exception{
 
     private String codiCausa;
     private String missatge;
