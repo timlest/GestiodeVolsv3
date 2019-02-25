@@ -51,6 +51,7 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiAvio(String codi) {
+        return Pattern.compile("^\\d{3}$").matcher(codi).matches();
     }
 
     /*
@@ -63,6 +64,7 @@ public class GestioVolsExcepcio {
     Retorn: verdader si el format és correcta, fals en cas contrari.
      */
     public static boolean comprovarCodiRuta(String codi) {
+        return Pattern.compile("^[a-Za-z]{2}[0-9]{3}$").matcher(codi).matches();
     }
 
     /*
