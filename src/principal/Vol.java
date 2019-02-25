@@ -235,7 +235,7 @@ public class Vol implements Component {
                 if (String.valueOf(demanarDades("\nVols que el tripulant afegit sigui cap de cabina?: S-Si o N-No", 2))
                         .equals("S")) {
                     cap.setRang(null);
-                    cap = (TCP) tripulacio[posicioTripulacio - 1];
+                    cap = (TCP) tripulacio.get(tripulant.getPassaport());//a revisar
                     cap.setRang("cap");
                 }
             }
