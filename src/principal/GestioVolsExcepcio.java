@@ -88,6 +88,7 @@ public class GestioVolsExcepcio {
     Retorn: El codi i missatge d'una excepció.
      */
     public String getMessage(){
+        return "Codi: " + codiCausa + "\nMissatge: " + missatge;
     }
 
 }
