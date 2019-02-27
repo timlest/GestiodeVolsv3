@@ -134,7 +134,7 @@ public class Companyia implements Component {
     /*
      AVIÓ
      */
-    public void afegirAvio(Avio avio) {
+    public void afegirAvio(Avio avio) throws GestioVolsExcepcio {
 
         if (avio == null) {
             avio = Avio.nouAvio();
@@ -152,7 +152,7 @@ public class Companyia implements Component {
     /*
      RUTA NACIONAL
      */
-    public void afegirRutaNacional(RutaNacional ruta) {
+    public void afegirRutaNacional(RutaNacional ruta) throws GestioVolsExcepcio {
 
         if (ruta == null) {
             ruta = RutaNacional.novaRutaNacional();
@@ -170,7 +170,7 @@ public class Companyia implements Component {
     /*
      RUTA INTERNACIONAL
      */
-    public void afegirRutaInternacional(RutaInternacional ruta) {
+    public void afegirRutaInternacional(RutaInternacional ruta) throws GestioVolsExcepcio {
 
         if (ruta == null) {
             ruta = RutaInternacional.novaRutaInternacional();
@@ -188,7 +188,7 @@ public class Companyia implements Component {
     /*
      RUTA INTERCONTINENTAL
      */
-    public void afegirRutaIntercontinental(RutaIntercontinental ruta){
+    public void afegirRutaIntercontinental(RutaIntercontinental ruta) throws GestioVolsExcepcio{
 
         if (ruta == null) {
             ruta = RutaIntercontinental.novaRutaIntercontinental();
@@ -206,7 +206,7 @@ public class Companyia implements Component {
     /*
      RUTA TRANSOCEÀNICA
      */
-    public void afegirRutaTransoceanica(RutaTransoceanica ruta) {
+    public void afegirRutaTransoceanica(RutaTransoceanica ruta) throws GestioVolsExcepcio {
 
         if (ruta == null) {
             ruta = RutaTransoceanica.novaRutaTransoceanica();
@@ -257,7 +257,7 @@ public class Companyia implements Component {
     /*
      VOL
      */
-    public void afegirVol(Vol vol) throws ParseException {
+    public void afegirVol(Vol vol) throws ParseException, GestioVolsExcepcio {
 
         if (vol == null) {
             vol = Vol.nouVol();

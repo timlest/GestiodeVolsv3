@@ -5,6 +5,7 @@
  */
 package components;
 
+import principal.GestioVolsExcepcio;
 
 /**
  *
@@ -22,7 +23,7 @@ public class RutaIntercontinental extends RutaInternacional{
      - Assignar als atributs els valors passats com a paràmetres.
      */
 
-    public RutaIntercontinental(String codi, String aeroportOri, String aeroportDes, String paisOri, String paisDes, String continentOri, String continentDes, double distancia) {
+    public RutaIntercontinental(String codi, String aeroportOri, String aeroportDes, String paisOri, String paisDes, String continentOri, String continentDes, double distancia) throws GestioVolsExcepcio {
         super(codi, aeroportOri, aeroportDes, paisOri, paisDes, distancia);
         this.continentOri = continentOri;
         this.continentDes = continentDes;
@@ -55,13 +56,16 @@ public class RutaIntercontinental extends RutaInternacional{
     - Heu de tenir en compte que els aeroports i països no tene per què estar formats
     per una única paraula, per exemple, El Prat i Regne Unit.
      */
-    public static RutaIntercontinental novaRutaIntercontinental() {
+    public static RutaIntercontinental novaRutaIntercontinental() throws GestioVolsExcepcio {
         
         String codi, aeroportOri, aeroportDes, paisOri, paisDes, continentOri, continentDes;
         double distancia;
 
         System.out.println("\nCodi de la ruta intercontinental:");
         codi = DADES.next();
+		if (!GestioVolsExcepcio.comprovarCodiRuta(codi)) {
+			throw new GestioVolsExcepcio("3");
+		}
         DADES.nextLine(); //Neteja de buffer
         System.out.println("\nAeroport d'origen de la ruta intercontinental:");
         aeroportOri = DADES.nextLine();
@@ -91,7 +95,7 @@ public class RutaIntercontinental extends RutaInternacional{
     
      Retorn: cap
      */
-    public void modificarComponent() {
+    public void modificarComponent() throws GestioVolsExcepcio {
         
         super.modificarComponent();
         

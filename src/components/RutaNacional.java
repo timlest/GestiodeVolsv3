@@ -4,6 +4,8 @@
  */
 package components;
 
+import principal.GestioVolsExcepcio;
+
 /**
  *
  * @author root
@@ -18,7 +20,7 @@ public class RutaNacional extends Ruta{
      Accions:
      - Assignar als atributs els valors passats com a paràmetres.
      */
-    public RutaNacional(String codi, String pais, String aeroportOri, String aeroportDes, double distancia) {
+    public RutaNacional(String codi, String pais, String aeroportOri, String aeroportDes, double distancia) throws GestioVolsExcepcio {
         super(codi, aeroportOri, aeroportDes, distancia);
         this.pais = pais;
     }
@@ -43,13 +45,16 @@ public class RutaNacional extends Ruta{
     - Heu de tenir en compte que els aeroports no tene per què estar formats per una única 
     paraula, per exemple, El Prat.
      */
-    public static RutaNacional novaRutaNacional() {
+    public static RutaNacional novaRutaNacional() throws GestioVolsExcepcio {
 
         String codi, aeroportOri, aeroportDes, pais;
         double distancia;
 
         System.out.println("\nCodi de la ruta nacional:");
         codi = DADES.next();
+		if (!GestioVolsExcepcio.comprovarCodiRuta(codi)) {
+			throw new GestioVolsExcepcio("3");
+		}
         DADES.nextLine(); //Neteja de buffer
         System.out.println("\nAeroport d'origen de la ruta nacional:");
         aeroportOri = DADES.nextLine();
@@ -74,7 +79,7 @@ public class RutaNacional extends Ruta{
     
      Retorn: cap
      */
-    public void modificarComponent() {
+    public void modificarComponent() throws GestioVolsExcepcio {
         
         super.modificarComponent();
         
