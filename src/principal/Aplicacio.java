@@ -1,6 +1,6 @@
 /*
  * Una classe Aplicacio per interactuar amb l'usuari, que contengui les companyies 
- * i cridar a la resta de classes i mÃ¨todes mitjanÃ§ant uns menÃºs.
+ * i cridar a la resta de classes i mÃ¨todes mitjanÃ§ant uns menús.
  */
 package principal;
 
@@ -43,17 +43,17 @@ public class Aplicacio {
 			int opcio = 0;
 
 			do {
-				System.out.println("\nSelecciona una opciÃ³");
+				System.out.println("\nSelecciona una opció");
 				System.out.println("\n0. Sortir");
-				System.out.println("\n1. GestiÃ³ de companyies");
-				System.out.println("\n2. GestiÃ³ d'avions");
-				System.out.println("\n3. GestiÃ³ de rutes nacionals");
-				System.out.println("\n4. GestiÃ³ de rutes internacionals");
-				System.out.println("\n5. GestiÃ³ de rutes intercontinentals");
-				System.out.println("\n6. GestiÃ³ de rutes transoceÃ niques");
-				System.out.println("\n7. GestiÃ³ de tripulants de cabina");
-				System.out.println("\n8. GestiÃ³ de tripulants de cabina de passatgers");
-				System.out.println("\n9. GestiÃ³ de vols");
+				System.out.println("\n1. Gestió de companyies");
+				System.out.println("\n2. Gestió d'avions");
+				System.out.println("\n3. Gestió de rutes nacionals");
+				System.out.println("\n4. Gestió de rutes internacionals");
+				System.out.println("\n5. Gestió de rutes intercontinentals");
+				System.out.println("\n6. Gestió de rutes transoceàniques");
+				System.out.println("\n7. Gestió de tripulants de cabina");
+				System.out.println("\n8. Gestió de tripulants de cabina de passatgers");
+				System.out.println("\n9. Gestió de vols");
 
 				opcio = DADES.nextInt();
 
@@ -67,60 +67,60 @@ public class Aplicacio {
 					if (companyiaActual != null) {
 						menuComponents(1);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 3:
 					if (companyiaActual != null) {
 						menuComponents(2);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 4:
 					if (companyiaActual != null) {
 						menuComponents(3);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 5:
 					if (companyiaActual != null) {
 						menuComponents(4);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 6:
 					if (companyiaActual != null) {
 						menuComponents(5);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 7:
 					if (companyiaActual != null) {
 						menuComponents(6);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 8:
 					if (companyiaActual != null) {
 						menuComponents(7);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				case 9:
 					if (companyiaActual != null) {
 						menuComponents(8);
 					} else {
-						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menÃº de companyes");
+						System.out.println("\nPrimer s'ha de seleccionar la companyia en el menú de companyes");
 					}
 					break;
 				default:
-					System.out.println("\nS'ha de seleccionar una opciÃ³ correcta del menÃº.");
+					System.out.println("\nS'ha de seleccionar una opció correcta del menú.");
 					break;
 				}
 			} while (opcio != 0);
@@ -189,7 +189,7 @@ public class Aplicacio {
 				}
 				break;
 			default:
-				System.out.println("\nS'ha de seleccionar una opciÃ³ correcta del menÃº.");
+				System.out.println("\nS'ha de seleccionar una opció³ correcta del menú.");
 				break;
 			}
 		} while (opcio != 0);
@@ -199,14 +199,14 @@ public class Aplicacio {
 		int opcio = 0;
 
 		do {
-			System.out.println("\nSelecciona una opciÃ³");
+			System.out.println("\nSelecciona una opció");
 			System.out.println("\n0. Sortir");
 			System.out.println("\n1. Alta");
 			System.out.println("\n2. Modificar");
 			System.out.println("\n3. Llistar");
 
 			if (tipus == 8) {
-				System.out.println("\n4. Afegir aviÃ³");
+				System.out.println("\n4. Afegir avió");
 				System.out.println("\n5. Afegir ruta");
 				System.out.println("\n6. Afegir tripulant");
 			}
@@ -334,7 +334,7 @@ public class Aplicacio {
 				}
 				break;
 			default:
-				System.out.println("\nS'ha de seleccionar una opciÃ³ correcta del menÃº.");
+				System.out.println("\nS'ha de seleccionar una opció³ correcta del menú.");
 				break;
 			}
 		} while (opcio != 0);
