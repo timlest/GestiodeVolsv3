@@ -230,7 +230,34 @@ public class GestorXML implements ProveedorPersistencia {
      *
      *Retorn: cap
      */
-    private void obtenirDades() {
+    private void obtenirDades() throws GestioVolsExcepcio {
+        Element arrel = doc.getRootElement();
+        companyia = new Companyia(arrel.getAttributeValue("nom"));
+        Elements llistaAvions = arrel.getChildElements("avio");
+        Element avio = null;
+        Element classe = null;
+        for (int i = 0; i < llistaAvions.size(); i++) {
+            avio = llistaAvions.get(i);
+            Avio nouAvio = new Avio(avio.getAttributeValue("codi"), avio.getAttributeValue("fabricant"), avio.getAttributeValue("model"), Integer.parseInt(avio.getAttributeValue("capacitat")));
+            Elements llistaClasses = avio.getChildElements("classe");
+            for (int j = 0; j < llistaClasses.size(); j++) {
+                classe = llistaClasses.get(j);
+                Classe novaClasse = new Classe(classe.getAttributeValue("nom"), Integer.parseInt(classe.getAttributeValue("capacitat")));
+                nouAvio.getClasses().add(novaClasse);
+            }
+            companyia.afegirAvio(nouAvio);
+        }
         
+        /////////////////////////////////////////////////////////////////
+        
+        Elements llistaRutes = arrel.getChildElements("rutaNacional");
+        Element ruta = null;
+        for (int i = 0; i < llistaRutes.size(); i++) {
+            ruta = llistaRutes.get(i);
+            companyia.afegirRutaNacional(new RutaNacional(ruta.getAttributeValue("codi"), ruta.getAttributeValue("pais"), ruta.getAttributeValue("aeroportOri"), ruta.getAttributeValue("aeroportDes"), Integer.parseInt(ruta.getAttributeValue("distancia"))));
+        }
+        llistaRutes = arrel.getChildElements("rutaInternacional");
+        llistaRutes = arrel.getChildElements("rutaContinental");
+        llistaRutes = arrel.getChildElements("rutaTransoceanica");
     }
 }
