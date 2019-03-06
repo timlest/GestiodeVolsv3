@@ -31,4 +31,6 @@ public interface Component {
                 return DADES.nextLine();
         }
     }
+
+    public String getCodi();
 }

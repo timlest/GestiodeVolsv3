@@ -75,7 +75,7 @@ public class Companyia implements Component {
         this.nom = nom;
     }
 
-    public ArrayList getComponents() {
+    public ArrayList <Component> getComponents() {
         return components;
     }
 

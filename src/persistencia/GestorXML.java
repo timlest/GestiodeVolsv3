@@ -1,16 +1,22 @@
 package persistencia;
 
+import components.Avio;
+import components.Ruta;
+import components.Tripulant;
 import java.io.FileWriter;
 import nu.xom.*;
 import principal.Companyia;
+import principal.Component;
 import principal.GestioVolsExcepcio;
+import principal.Vol;
 
 /**
  *
  * @author cesca
  */
 public class GestorXML implements ProveedorPersistencia {
-        private Document doc;
+
+    private Document doc;
     private Companyia companyia;
 
     public Companyia getCompanyia() {
@@ -53,8 +59,26 @@ public class GestorXML implements ProveedorPersistencia {
      *
      *Retorn: cap
      */
-    private void construirModel(Companyia pCompanyia){
-        
+    private void construirModel(Companyia pCompanyia) {
+        Element arrel = new Element("companyia");
+        for (Component c : pCompanyia.getComponents()) {
+            Element fill = null;
+            if (c instanceof Avio) {
+                    fill = new Element("avio");
+                    fill.addAttribute(new Attribute("codi", ((Avio) c).getCodi()));
+                    fill.addAttribute(new Attribute("fabricant", ((Avio) c).getFabricant()));
+                    fill.addAttribute(new Attribute("model", ((Avio) c).getModel()));
+                    fill.addAttribute(new Attribute("capacitat", String.valueOf(((Avio) c).getCapacitat())));
+                    Element classes = null;
+                    for
+            } else if (c instanceof Ruta) {
+
+            } else if(c instanceof Vol){
+                
+            } else if(c instanceof Tripulant){
+                
+            }
+        }
     }
 
     private void desarModel(String rutaFitxer) throws GestioVolsExcepcio {
@@ -67,10 +91,10 @@ public class GestorXML implements ProveedorPersistencia {
         }
     }
 
-    private void carregarFitxer(String rutaFitxer) throws GestioVolsExcepcio { 
+    private void carregarFitxer(String rutaFitxer) throws GestioVolsExcepcio {
         Builder builder = new Builder();
         try {
-            doc = builder.build("/home/cesca/NetBeansProjects/ControlPlatsV4Solucio/"+rutaFitxer);
+            doc = builder.build("C:\\Users\\Usuario\\Documents\\NetBeansProjects\\GestiodeVolsv3\\" + rutaFitxer);
             System.out.println(doc.toXML());
         } catch (Exception e) {
             throw new GestioVolsExcepcio("GestorXML.carregar");
@@ -102,6 +126,6 @@ public class GestorXML implements ProveedorPersistencia {
      *Retorn: cap
      */
     private void obtenirDades() {
-       
+
     }
 }
