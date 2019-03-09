@@ -130,7 +130,7 @@ public class Aplicacio {
 
 	}
 
-	public static void menuCompanyes() throws GestioVolsExcepcio, InputMismatchException {
+	public static void menuCompanyes() throws GestioVolsExcepcio, InputMismatchException, ParseException {
 		int opcio = 0;
 
 		do {

@@ -1,6 +1,8 @@
 
 package persistencia;
 
+import java.text.ParseException;
+
 import principal.Companyia;
 import principal.GestioVolsExcepcio;
 
@@ -10,5 +12,5 @@ import principal.GestioVolsExcepcio;
  */
 public interface ProveedorPersistencia {
     public void desarDades(String nomFitxer, Companyia companyia) throws GestioVolsExcepcio;
-    public Companyia carregarDades(String nomFitxer) throws GestioVolsExcepcio;
+    public Companyia carregarDades(String nomFitxer) throws GestioVolsExcepcio, ParseException;
 }

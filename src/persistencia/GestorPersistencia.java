@@ -1,5 +1,7 @@
 package persistencia;
 
+import java.text.ParseException;
+
 import principal.Companyia;
 import principal.GestioVolsExcepcio;
 
@@ -25,7 +27,7 @@ public class GestorPersistencia {
         }
     }
 
-    public Companyia carregarCompanyia(String tipusPersistencia, String nomFitxer) throws GestioVolsExcepcio {
+    public Companyia carregarCompanyia(String tipusPersistencia, String nomFitxer) throws GestioVolsExcepcio, ParseException {
         ProveedorPersistencia gestor = null;
         Companyia companyia = null;
 
